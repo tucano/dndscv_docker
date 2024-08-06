@@ -38,6 +38,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   gfortran \
   cmake
 
+RUN R -e 'install.packages("optparse")'
 RUN R -e 'install.packages("devtools")'
 RUN R -e 'install.packages("stringr")'
 RUN R -e 'install.packages("dplyr")'
