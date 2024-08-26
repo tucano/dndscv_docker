@@ -36,11 +36,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   libbz2-dev \
   liblapack-dev \
   gfortran \
-  cmake
+  cmake \
+  libnlopt-dev 
 
 RUN R -e 'install.packages("optparse")'
 RUN R -e 'install.packages("devtools")'
 RUN R -e 'install.packages("stringr")'
 RUN R -e 'install.packages("dplyr")'
 RUN R -e 'install.packages("readr")'
+RUN R -e 'install.packages("ade4")'
 RUN R -e 'devtools::install_github("im3sanger/dndscv")'

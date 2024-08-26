@@ -1,0 +1,41 @@
+Bootstrap: docker
+From: ubuntu:latest
+
+%labels
+    Version v0.0.1
+
+%help
+    dndscv singularity image
+
+%environment
+    export DEBIAN_FRONTEND=noninteractive
+
+%post
+    apt-get update && apt-get install -y git
+    apt-get update && apt-get install -y --no-install-recommends build-essential r-base
+    chmod a+w /usr/local/lib/R/site-library
+    apt-get update && apt-get install -y --no-install-recommends \
+        libgit2-dev \
+        libssl-dev \
+        libcurl4-openssl-dev \
+        libfontconfig1-dev \
+        zlib1g-dev \
+        libharfbuzz-dev \
+        libfribidi-dev  \
+        libfreetype6-dev \
+        libpng-dev \
+        libtiff5-dev \
+        libjpeg-dev \
+        libxml2-dev \
+        libbz2-dev \
+        liblapack-dev \
+        gfortran \
+        cmake \
+        libnlopt-dev
+    R -e 'install.packages("optparse")'
+    R -e 'install.packages("devtools")'
+    R -e 'install.packages("stringr")'
+    R -e 'install.packages("dplyr")'
+    R -e 'install.packages("readr")'
+    R -e 'install.packages("ade4")'
+    R -e 'devtools::install_github("im3sanger/dndscv")'
